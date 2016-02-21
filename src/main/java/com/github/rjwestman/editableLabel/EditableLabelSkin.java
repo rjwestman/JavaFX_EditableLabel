@@ -6,6 +6,7 @@ import com.sun.javafx.tk.Toolkit;
 import javafx.application.Platform;
 import javafx.collections.SetChangeListener;
 import javafx.css.PseudoClass;
+import javafx.scene.text.Text;
 
 public class EditableLabelSkin extends TextFieldSkin {
 
@@ -69,21 +70,19 @@ public class EditableLabelSkin extends TextFieldSkin {
     }
 
     private String calculateClipString(String text) {
-        TextLayout layout = Toolkit.getToolkit().getTextLayoutFactory().createLayout();
-        Object font = editableLabel.getFont().impl_getNativeFont();
         double labelWidth = editableLabel.getWidth();
 
-        // If no need to truncate
-        layout.setContent(text, font);
-        if (layout.getBounds().getWidth() < labelWidth) {
+        Text layoutText = new Text(text);
+        layoutText.setFont(editableLabel.getFont());
+
+        if ( layoutText.getLayoutBounds().getWidth() < labelWidth ) {
             return text;
         } else {
-            layout.setContent(text+"...", font);
-            while ( layout.getBounds().getWidth() > labelWidth ) {
+            layoutText.setText(text+"...");
+            while ( layoutText.getLayoutBounds().getWidth() > labelWidth ) {
                 text = text.substring(0, text.length()-1);
-                layout.setContent(text+"...", font);
+                layoutText.setText(text+"...");
             }
-
             return text+"...";
         }
     }
