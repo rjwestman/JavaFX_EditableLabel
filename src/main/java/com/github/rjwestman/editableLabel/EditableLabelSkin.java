@@ -6,6 +6,11 @@ import javafx.collections.SetChangeListener;
 import javafx.css.PseudoClass;
 import javafx.scene.text.Text;
 
+/**
+ * The Skin Class for EditableLabel
+ *
+ * @sa EditableLabel, EditableLabelBehavior
+ */
 public class EditableLabelSkin extends TextFieldSkin {
 
     private EditableLabel editableLabel;
@@ -13,10 +18,12 @@ public class EditableLabelSkin extends TextFieldSkin {
 
     /************************************************************************
      *                                                                      *
-     * Constructors                                                         *
      *                                                                      *
+     * \defgroup Constructors                                               *
+     * Constructors and helper methods for constructors                     *
+     *                                                                      *
+     * @{                                                                   *
      ***********************************************************************/
-    // Constructors and helper methods for constructors
 
     public EditableLabelSkin(final EditableLabel editableLabel) {
         this(editableLabel, new EditableLabelBehavior(editableLabel));
@@ -31,6 +38,8 @@ public class EditableLabelSkin extends TextFieldSkin {
         editableState = false;
 
         Platform.runLater(this::updateVisibleText);
+
+        // Register listeners and binds
         editableLabel.getPseudoClassStates().addListener( (SetChangeListener<PseudoClass>) e -> {
             if (e.getSet().contains(PseudoClass.getPseudoClass("editable"))) {
                 if ( !editableState ) {
@@ -51,12 +60,18 @@ public class EditableLabelSkin extends TextFieldSkin {
     }
 
     /************************************************************************
+     * @}                                                                   *
      *                                                                      *
-     * Control State Changes                                                *
+     * \defgroup ControlStateChanges                                        *
+     * Handles visual changes on state change that are not or cannot be     *
+     * handled via css                                                      *
      *                                                                      *
+     * @{                                                                   *
      ***********************************************************************/
-    // Handles visual changes on state change that are not or cannot be handled via css
 
+    /**
+     * Updates the visual text using the baseText
+     */
     private void updateVisibleText() {
         String baseText = editableLabel.getBaseText();
         if ( !editableState ) {
@@ -67,6 +82,12 @@ public class EditableLabelSkin extends TextFieldSkin {
         }
     }
 
+    /**
+     * Truncates text to fit into the EditableLabel
+     *
+     * @param text The text that needs to be truncated
+     * @return The truncated text with an appended "..."
+     */
     private String calculateClipString(String text) {
         double labelWidth = editableLabel.getWidth();
 
@@ -86,11 +107,16 @@ public class EditableLabelSkin extends TextFieldSkin {
     }
 
     /************************************************************************
+     * @}                                                                   *
      *                                                                      *
-     * Skin Layout                                                          *
+     * \defgroup SkinLayout                                                 *
+     * Lays out the elements of the control                                 *
+     * (e.g. calculating and setting sizes and bounds or changing number    *
+     * of grid rows and columns)                                            *
      *                                                                      *
+     * @{                                                                   *
      ***********************************************************************/
-    // Lays out the elements of the control (e.g. calculating and setting sizes and bounds)
 
+    /** @} */
 
 }

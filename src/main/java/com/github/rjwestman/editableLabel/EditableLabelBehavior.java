@@ -5,6 +5,11 @@ import javafx.css.PseudoClass;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
 
+/**
+ * The Behavior Class for EditableLabel
+ *
+ * @sa EditableLabel, EditableLabelSkin
+ */
 public class EditableLabelBehavior extends TextFieldBehavior {
 
     private EditableLabel editableLabel;
@@ -12,10 +17,11 @@ public class EditableLabelBehavior extends TextFieldBehavior {
 
     /************************************************************************
      *                                                                      *
-     * Constructors                                                         *
+     * \defgroup Constructors                                               *
+     * Constructors and helper methods for constructors                     *
      *                                                                      *
+     * @{                                                                   *
      ***********************************************************************/
-    // Constructors and helper methods for constructors
 
     public EditableLabelBehavior(final EditableLabel editableLabel) {
         super(editableLabel);
@@ -26,6 +32,7 @@ public class EditableLabelBehavior extends TextFieldBehavior {
     private void init() {
         focusTraversable = false;
 
+        // Register listeners and events
         editableLabel.setOnMouseClicked(this::handleMouseClicked);
         editableLabel.setOnKeyPressed(this::handleKeyPressed);
         editableLabel.focusedProperty().addListener( (observable, oldValue, newValue) -> handleFocusChange(newValue));
@@ -33,9 +40,11 @@ public class EditableLabelBehavior extends TextFieldBehavior {
     }
 
     /************************************************************************
+     * @}                                                                   *
      *                                                                      *
-     * Behavior Methods                                                     *
+     * \defgroup BehaviorMethods                                            *
      *                                                                      *
+     * @{                                                                   *
      ***********************************************************************/
 
     private void handleKeyPressed(KeyEvent event) {
@@ -81,5 +90,7 @@ public class EditableLabelBehavior extends TextFieldBehavior {
         editableLabel.deselect();
         editableLabel.pseudoClassStateChanged(PseudoClass.getPseudoClass("editable"), false);
     }
+
+    /** @} */
 
 }
