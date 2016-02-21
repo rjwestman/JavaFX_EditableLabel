@@ -23,7 +23,7 @@ public class Example1 extends Application {
         root.setAlignment(Pos.TOP_CENTER);
 
         EditableLabel editableLabel = new EditableLabel("Test EditableLabel.");
-        //editableLabel.setEditableClicks(2);
+        editableLabel.setEditableClicks(2);
         root.getChildren().add(editableLabel);
 
         root.getChildren().add(new Button("This is just for changing focus"));
