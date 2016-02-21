@@ -1,8 +1,6 @@
 package com.github.rjwestman.editableLabel;
 
 import com.sun.javafx.scene.control.skin.TextFieldSkin;
-import com.sun.javafx.scene.text.TextLayout;
-import com.sun.javafx.tk.Toolkit;
 import javafx.application.Platform;
 import javafx.collections.SetChangeListener;
 import javafx.css.PseudoClass;

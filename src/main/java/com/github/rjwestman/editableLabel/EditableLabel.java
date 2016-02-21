@@ -1,7 +1,6 @@
 package com.github.rjwestman.editableLabel;
 
 import javafx.beans.property.*;
-import javafx.scene.control.OverrunStyle;
 import javafx.scene.control.Skin;
 import javafx.scene.control.TextField;
 
